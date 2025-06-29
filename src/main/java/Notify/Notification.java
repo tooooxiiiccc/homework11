@@ -26,6 +26,6 @@ public class Notification {
 
         @Override
         public String toString() {
-                return String.format("Notification{id=%d, message='%s', priority=%s}", id, message, priority);
+                return String.format("Notification { id=%d, message='%s', priority= %s}", id, message, priority);
         }
 }

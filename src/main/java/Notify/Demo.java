@@ -8,9 +8,8 @@ public class Demo {
                 new EmailNotification("danila.morozov@mail.ru", "Email-увдомление"),
                 new Notification("Увдомление", Priority.LOW)
         };
-        for (Notification notification : notifications) {
-            notification.send();
-
+        for (Notification n : notifications) {
+            n.send();
         }
         System.out.println("Общее кол-во уведомлений" + " " + notifications.length);
     }
