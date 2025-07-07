@@ -7,7 +7,7 @@ public class Notification {
         private static int nextId = 1;
 
         public Notification() {
-                this("empty", Priority.NORMAL);
+                this("empty",Priority.NORMAL);
         }
 
         public Notification(String message, Priority priority) {
@@ -16,7 +16,7 @@ public class Notification {
                 this.priority = priority;
         }
 
-        public void send(){
+        public void send() {
                 System.out.println(this);
         }
 
@@ -27,5 +27,24 @@ public class Notification {
         @Override
         public String toString() {
                 return String.format("Notification { id=%d, message='%s', priority= %s}", id, message, priority);
+        }
+
+        public String getMessage() {
+                return message;
+        }
+
+        public void setMessage(String message) {
+                if (message == null || message.isEmpty()) {
+                        throw new IllegalArgumentException("Сообщение не может быть пустым");
+                }
+                this.message = message;
+        }
+
+        public int getId() {
+                return id;
+        }
+
+        public Priority getPriority() {
+                return priority;
         }
 }

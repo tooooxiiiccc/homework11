@@ -4,7 +4,7 @@ public class SmsNotification extends Notification {
     private final String phoneNumber;
 
     public SmsNotification(String phoneNumber, String message) {
-        Priority priority = Priority.LOW;
+        super(phoneNumber, Priority.LOW);
         this.phoneNumber = phoneNumber;
     }
 
@@ -12,5 +12,9 @@ public class SmsNotification extends Notification {
     public void send() {
         System.out.println("Sending SMS to " + phoneNumber);
         super.send();
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 }

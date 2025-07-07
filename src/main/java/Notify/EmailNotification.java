@@ -7,6 +7,9 @@ public class EmailNotification extends Notification {
         super(message, Priority.HIGH);
         this.email = email;
     }
+    public String getEmail() {
+        return email;
+    }
 
     @Override
     public void send() {
