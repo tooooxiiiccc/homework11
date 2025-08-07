@@ -1,24 +1,23 @@
 package Notify;
 
-public class Notification {
+public abstract class Notification implements Sendable {
         private final int id;
         private String message;
         private final Priority priority;
         private static int nextId = 1;
 
         public Notification() {
-                this("empty",Priority.NORMAL);
+                this("Random", Priority.NORMAL);
         }
 
         public Notification(String message, Priority priority) {
-                this.id = nextId++;
+                id = nextId++;
                 this.message = message;
                 this.priority = priority;
         }
 
-        public void send() {
-                System.out.println(this);
-        }
+        @Override
+        public abstract void send();
 
         public void send(String extra) {
                 System.out.println(this + "\n" + extra);

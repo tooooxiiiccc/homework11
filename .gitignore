@@ -12,6 +12,10 @@
 
 .idea
 
+.gradle
+
+.build/tmp/
+
 # Package Files #
 *.jar
 *.war
