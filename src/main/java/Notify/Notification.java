@@ -1,49 +1,48 @@
 package Notify;
 
 public abstract class Notification implements Sendable {
-        private final int id;
-        private String message;
-        private final Priority priority;
-        private static int nextId = 1;
+    private final int id;
+    private String message;
+    private final Priority priority;
+    private static int nextId = 1;
 
-        public Notification() {
-                this("Random", Priority.NORMAL);
+    public Notification() {
+        this("Random", Priority.NORMAL);
+    }
+
+    public Notification(String message, Priority priority) {id = nextId++;
+        this.message = message;
+        this.priority = priority;
+    }
+
+    @Override
+    public abstract void send();
+
+    public void send(String extra) {
+        System.out.println(this + "\n" + extra);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Notification { id=%d, message='%s', priority= %s}", id, message, priority);
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        if (message == null || message.isEmpty()) {
+            throw new IllegalArgumentException("Сообщение не может быть пустым");
         }
+        this.message = message;
+    }
 
-        public Notification(String message, Priority priority) {
-                id = nextId++;
-                this.message = message;
-                this.priority = priority;
-        }
+    public int getId() {
+        return id;
+    }
 
-        @Override
-        public abstract void send();
-
-        public void send(String extra) {
-                System.out.println(this + "\n" + extra);
-        }
-
-        @Override
-        public String toString() {
-                return String.format("Notification { id=%d, message='%s', priority= %s}", id, message, priority);
-        }
-
-        public String getMessage() {
-                return message;
-        }
-
-        public void setMessage(String message) {
-                if (message == null || message.isEmpty()) {
-                        throw new IllegalArgumentException("Сообщение не может быть пустым");
-                }
-                this.message = message;
-        }
-
-        public int getId() {
-                return id;
-        }
-
-        public Priority getPriority() {
-                return priority;
-        }
+    public Priority getPriority() {
+        return priority;
+    }
 }
