@@ -19,8 +19,7 @@ public class NotificationManager<T extends Notification> {
         notifications.add(notification);
 
         Priority priority = notification.getPriority();
-        notifByPriority.computeIfAbsent(priority, k -> new ArrayList<>());
-//            priorityList.add(notification);
+        notifByPriority.computeIfAbsent(priority, k -> new ArrayList<>()).add(notification);
     }
 
     public Optional<T> find(int id) {

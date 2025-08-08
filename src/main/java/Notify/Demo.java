@@ -1,7 +1,5 @@
 package Notify;
 
-
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +26,8 @@ public class Demo {
 
         Optional<Notification> notificationFound = notificationManager.find(3);
 
+        notificationManager.find(2).get().sendWithLogging();
+
         notificationManager.sendAll();
     }
-    }
+}
