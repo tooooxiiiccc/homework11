@@ -1,16 +1,33 @@
 package Notify;
 
+import java.util.List;
+import java.util.Optional;
 
 public class Demo {
     public static void main(String[] args) {
-        Notification[] notifications = {
-                new SmsNotification("89999999999", "Sms-Уведомление"),
-                new EmailNotification("danila.morozov@mail.ru", "Email-увдомление"),
-                new Notification("Увдомление", Priority.LOW)
-        };
-        for (Notification n : notifications) {
-            n.send();
+        NotificationManager<Notification> notificationManager = new NotificationManager<>();
+        notificationManager.add(new EmailNotification("danek.pirozhok", "Здрасьте"));
+        notificationManager.add(new SmsNotification("78923457645", "Pizdec"));
+        notificationManager.add(new EmailNotification("danek.pirozhok", "Dosvidaniya"));
+        EmailNotification emailNotification = new EmailNotification("String", "String");
+        notificationManager.add(emailNotification);
+
+        try {
+            notificationManager.add(emailNotification);
+        } catch (DuplicateIdException d) {
+            System.out.println(d.getMessage());
         }
-        System.out.println("Общее кол-во уведомлений" + " " + notifications.length);
+
+        List<Notification> highPriority = notificationManager.get(Priority.HIGH);
+        System.out.println(notificationManager.get(Priority.HIGH));
+        for (Notification notification : highPriority) {
+            System.out.println(notification);
+        }
+
+        Optional<Notification> notificationFound = notificationManager.find(3);
+
+        notificationManager.find(2).get().sendWithLogging();
+
+        notificationManager.sendAll();
     }
 }
